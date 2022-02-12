@@ -1,0 +1,82 @@
+.total-cases-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.total-cases-heading h3 {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.cases-num {
+  height: auto;
+  width: 100%;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2f3d41;
+  padding-left: 15px;
+}
+
+.cases-bar {
+  width: 95%;
+  height: 10px;
+  border-radius: 20px;
+  margin: 0;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+.active,
+.recovered,
+.fatal {
+  display: inline-block;
+  height: 12px;
+}
+
+.active {
+  background-color: #cb2d6f;
+}
+.recovered {
+  background-color: #14a098;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.fatal {
+  background-color: #0f292f;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.total-list {
+  width: 100%;
+  height: auto;
+  list-style: none;
+  padding: 0 0 0 20px;
+  margin: 30px 0 20px 0;
+}
+
+.list-case {
+  width: 94%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  margin: 20px 0;
+  color: #555;
+}
+
+.total-legend__recovered {
+  font-size: 0.8rem;
+  color: #14a098;
+}
+.total-legend__active {
+  font-size: 0.8rem;
+  color: #cb2d6f;
+}
+.total-legend__fatal {
+  font-size: 0.8rem;
+  color: #0f292f;
+}

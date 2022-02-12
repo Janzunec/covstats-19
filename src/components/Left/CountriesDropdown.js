@@ -1,51 +1,67 @@
-import { FormControl, MenuItem, Select } from '@material-ui/core';
-import React from 'react';
-import './CountriesDropdown.css';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import React, { useState } from "react";
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  Autocomplete,
+  TextField,
+  styled,
+} from "@mui/material";
+import { IoLocationOutline } from "react-icons/io";
+import "./CountriesDropdown.css";
 
 export default function Dropdown(props) {
-  const countryChangeHandler = (e) => {
-    props.onChangeCountry(e.target.value);
+  const countryChangeHandler = (e, newValue) => {
+    console.log(newValue);
+    props.onChangeCountry(newValue);
   };
-  // const [value, setValue] = React.useState(props.countriesArr[0]);
-  // const [inputValue, setInputValue] = React.useState('');
+
+  const [value, setValue] = useState(props.countriesArr[0]);
+
+  const CssTextField = styled(TextField)({
+    "& label.Mui-focused": {
+      color: "gray",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "gray",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#eceff1",
+        borderRadius: 4,
+      },
+      "&:hover fieldset": {
+        borderColor: "#eceff1",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#eceff1",
+      },
+    },
+  });
 
   return (
-    <div className="app__left">
-      <FormControl className="app__dropdown">
-        <Select
-          variant="outlined"
-          value={props.selectedCountry}
-          onChange={countryChangeHandler}
-        >
-          <MenuItem key={Math.random()} value="WorldWide">
-            WorldWide
-          </MenuItem>
-          {props.countriesArr.map((val) => {
-            return (
-              <MenuItem key={Math.random()} value={val}>
-                {val}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      {/* <Autocomplete
+    <div className="dropdown">
+      <Autocomplete
         value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
+        id="combo-box-demo"
+        options={props.countriesArr}
+        sx={{
+          width: "100%",
+          backgroundColor: "#eceff1",
+          borderColor: "white",
         }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
+        onChange={countryChangeHandler}
+        renderInput={(params) => {
+          // return <TextField {...params} label="🌍 Search location" fullWidth />;
+          return (
+            <CssTextField
+              {...params}
+              label="🌍 Search location"
+              id="custom-css-outlined-input"
+            />
+          );
         }}
-        id="controllable-states-demo"
-        options={props.arrCountries}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
-      /> */}
+      />
     </div>
   );
 }
