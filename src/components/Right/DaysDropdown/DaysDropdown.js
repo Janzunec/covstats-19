@@ -13,7 +13,18 @@ export default function DaysDropdown(props) {
   return (
     <div>
       <FormControl className="app__dropdown">
-        <Select variant="outlined" value={days} onChange={daysChangeHandler}>
+        <Select
+          variant="outlined"
+          value={days}
+          onChange={daysChangeHandler}
+          style={{
+            height: "40px",
+            border: "1px solid #ddd",
+            color: "#999",
+            minWidth: "100px",
+            borderRadius: "12px",
+          }}
+        >
           return (
           {daysArr.map((el) => {
             if (typeof el === "string") {

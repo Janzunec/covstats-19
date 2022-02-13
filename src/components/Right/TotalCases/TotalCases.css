@@ -66,6 +66,7 @@
   list-style: none;
   margin: 20px 0;
   color: #555;
+  font-weight: 500;
 }
 
 .total-legend__recovered {

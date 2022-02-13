@@ -9,8 +9,6 @@ export default function TotalCases(props) {
   const recovered = props.data.recovered;
   const deaths = props.data.deaths;
 
-  console.log(allCases, activeCases, recovered, deaths);
-
   const calculatePercentage = () => {
     const percentage = {
       activePercentage: 0,
@@ -18,16 +16,14 @@ export default function TotalCases(props) {
       fatalPercentage: 0,
     };
 
-    percentage.activePercentage = Math.ceil((activeCases * 100) / allCases);
+    percentage.activePercentage = Math.trunc((activeCases * 100) / allCases);
     percentage.recoveredPercentage = Math.trunc((recovered * 100) / allCases);
-    percentage.fatalPercentage = Math.trunc((deaths * 100) / allCases);
+    percentage.fatalPercentage = Math.ceil((deaths * 100) / allCases);
 
     return percentage;
   };
 
   const graphPercentage = calculatePercentage();
-
-  console.log(graphPercentage);
 
   return (
     <div className="total-cases">

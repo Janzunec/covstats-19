@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import TotalCases from "../../components/Right/TotalCases/TotalCases";
 import "./StatisticsRight.css";
+import ActiveCases from "./CasesGraphs/ActiveCases/ActiveCases";
+import ClosedCases from "./CasesGraphs/ClosedCases/ClosedCases";
 
 export default function StatisticsRight(props) {
   return (
@@ -16,8 +18,12 @@ export default function StatisticsRight(props) {
         />
       </div>
       <div className="statistics-right__graphs">
-        <div className="graph-active"></div>
-        <div className="graph-closed"></div>
+        <div className="graph-active">
+          <ActiveCases />
+        </div>
+        <div className="graph-closed">
+          <ClosedCases />
+        </div>
       </div>
       <div className="statistics-right__table"></div>
     </div>

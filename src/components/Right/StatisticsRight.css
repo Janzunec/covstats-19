@@ -27,3 +27,25 @@
 .right-total {
   border-bottom: 2px solid #ddd;
 }
+
+.statistics-right__graphs {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  flex-direction: row;
+}
+
+.graph-active,
+.graph-closed {
+  height: 45vh;
+  width: 50%;
+}
+
+.graph-active {
+  border-right: 1px solid #ddd;
+}
+
+.graph-closed {
+  border-left: 1px solid #ddd;
+}

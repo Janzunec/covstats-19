@@ -28,7 +28,7 @@ export default function Dropdown(props) {
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "#eceff1",
-        borderRadius: 4,
+        borderRadius: 30,
       },
       "&:hover fieldset": {
         borderColor: "#eceff1",
@@ -48,7 +48,7 @@ export default function Dropdown(props) {
         sx={{
           width: "100%",
           backgroundColor: "#eceff1",
-          borderColor: "white",
+          borderRadius: "30px",
         }}
         onChange={countryChangeHandler}
         renderInput={(params) => {
@@ -56,8 +56,11 @@ export default function Dropdown(props) {
           return (
             <CssTextField
               {...params}
-              label="🌍 Search location"
-              id="custom-css-outlined-input"
+              label="&nbsp;🌍 Search location"
+              id="custom-css-input"
+              style={{
+                borderRadius: "30px",
+              }}
             />
           );
         }}
