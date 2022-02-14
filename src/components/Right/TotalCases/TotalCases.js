@@ -4,10 +4,22 @@ import { FaSquare } from "react-icons/fa";
 import "./TotalCases.css";
 
 export default function TotalCases(props) {
-  const allCases = props.data.cases;
-  const activeCases = props.data.active;
-  const recovered = props.data.recovered;
-  const deaths = props.data.deaths;
+  let allCases;
+  let activeCases;
+  let recovered;
+  let deaths;
+  if (props.selectedDay === "All Time") {
+    allCases = props.data.cases;
+    activeCases = props.data.active;
+    recovered = props.data.recovered;
+    deaths = props.data.deaths;
+  } else {
+    allCases = props.data.todayCases;
+
+    activeCases = props.data.active;
+    recovered = props.data.todayRecovered;
+    deaths = props.data.todayDeaths;
+  }
 
   const calculatePercentage = () => {
     const percentage = {
@@ -29,7 +41,7 @@ export default function TotalCases(props) {
     <div className="total-cases">
       <div className="total-cases-heading">
         <h3>Total Confirmed Cases</h3>
-        <DaysDropdown />
+        <DaysDropdown updateDays={props.updateDays} />
       </div>
       <div className="cases-num">
         {Intl.NumberFormat("en-UK").format(allCases)}

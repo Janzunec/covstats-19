@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
 
 export default function DaysDropdown(props) {
-  const [days, setDays] = useState(7);
+  const [days, setDays] = useState("All Time");
 
-  const daysArr = ["Today", "Yesterday", 3, 5, 7];
+  const daysArr = ["Today", "All Time"];
 
   const daysChangeHandler = (e) => {
+    props.updateDays(e.target.value);
     setDays(e.target.value);
   };
 
@@ -34,11 +35,6 @@ export default function DaysDropdown(props) {
                 </MenuItem>
               );
             }
-            return (
-              <MenuItem key={Math.random()} value={el}>
-                Last {el} days
-              </MenuItem>
-            );
           })}
           );
         </Select>

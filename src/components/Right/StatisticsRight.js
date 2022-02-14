@@ -12,6 +12,8 @@ export default function StatisticsRight(props) {
       </h1>
       <div className="right-total">
         <TotalCases
+          selectedDay={props.selectedDay}
+          updateDays={props.updateDays}
           countriesArr={props.countriesArr}
           selectedCountry={props.selectedCountry}
           data={props.data}
