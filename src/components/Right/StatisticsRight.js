@@ -12,7 +12,7 @@ export default function StatisticsRight(props) {
       </h1>
       <div className="right-total">
         <TotalCases
-          selectedDay={props.selectedDay}
+          isAllTime={props.isAllTime}
           updateDays={props.updateDays}
           countriesArr={props.countriesArr}
           selectedCountry={props.selectedCountry}
@@ -21,10 +21,10 @@ export default function StatisticsRight(props) {
       </div>
       <div className="statistics-right__graphs">
         <div className="graph-active">
-          <ActiveCases />
+          <ActiveCases data={props.data} isAllTime={props.isAllTime} />
         </div>
         <div className="graph-closed">
-          <ClosedCases />
+          <ClosedCases data={props.data} isAllTime={props.isAllTime} />
         </div>
       </div>
       <div className="statistics-right__table"></div>

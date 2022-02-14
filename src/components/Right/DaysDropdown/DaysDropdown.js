@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { FormControl, MenuItem, Select } from "@mui/material";
 
 export default function DaysDropdown(props) {
-  const [days, setDays] = useState("All Time");
+  const [days, setDays] = useState(true);
 
-  const daysArr = ["Today", "All Time"];
+  const daysArr = [
+    { name: "Today", value: false },
+    { name: "All Time", value: true },
+  ];
 
   const daysChangeHandler = (e) => {
-    props.updateDays(e.target.value);
     setDays(e.target.value);
+    props.onDayChange(e.target.value);
   };
 
   return (
@@ -28,13 +31,11 @@ export default function DaysDropdown(props) {
         >
           return (
           {daysArr.map((el) => {
-            if (typeof el === "string") {
-              return (
-                <MenuItem key={Math.random()} value={el}>
-                  {el}
-                </MenuItem>
-              );
-            }
+            return (
+              <MenuItem key={Math.random()} value={el.value}>
+                {el.name}
+              </MenuItem>
+            );
           })}
           );
         </Select>

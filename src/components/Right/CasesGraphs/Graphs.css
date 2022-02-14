@@ -1,0 +1,24 @@
+.active-graph,
+.closed-graph {
+  width: 100%;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.active-graph {
+  border-right: 2px solid #ddd;
+}
+
+.closed-graph {
+  border-left: 2px solid #ddd;
+}
+
+.active-graph h3,
+.closed-graph h3 {
+  font-size: 1.2rem;
+  color: #888;
+  font-weight: 500;
+  margin: 0;
+  padding: 20px 0 15px 15px;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CasesGraph.css";
 import { Doughnut } from "react-chartjs-2";
 import {
@@ -13,7 +13,6 @@ import {
   SubTitle,
   registerables,
 } from "chart.js";
-import { width } from "@mui/system";
 
 export default function CasesGraph(props) {
   ChartJS.register(
@@ -28,15 +27,54 @@ export default function CasesGraph(props) {
     ...registerables
   );
 
+  const data = [];
+
+  if (!props.isAllTime) {
+    const allTodayCases =
+      props.data.todayCases +
+      props.data.todayRecovered +
+      props.data.todayDeaths;
+    data.cases = allTodayCases;
+    data.activeCases = props.data.todayCases;
+    data.recovered = props.data.todayRecovered;
+    data.deaths = props.data.todayDeaths;
+  }
+
   const labels = [];
   const colors = [];
 
   if (props.casesType === "active") {
     labels.push("Mild condition", "Critical condition");
     colors.push("#14a098", "#0f292f");
+
+    if (props.isAllTime) {
+      const mild = props.data.active - props.data.critical;
+      data.push(mild, props.data.critical);
+    }
+    if (!props.isAllTime) {
+      if (props.data.todayCases === 0) {
+        data.push(1, 1);
+        labels[0] = "Data not availible";
+        labels[1] = "Data not availible";
+      }
+      const mild = props.data.todayCases - props.data.critical;
+      data.push(mild, props.data.critical);
+    }
   } else {
     labels.push("Recovered", "Deaths");
     colors.push("#cb2d6f", "#501f3a");
+
+    if (props.isAllTime) {
+      data.push(props.data.recovered, props.data.deaths);
+    }
+    if (!props.isAllTime) {
+      if (props.data.todayCases === 0) {
+        data.push(1, 1);
+        labels[0] = "Data not availible";
+        labels[1] = "Data not availible";
+      }
+      data.push(props.data.todayRecovered, props.data.todayDeaths);
+    }
   }
 
   const state = {
@@ -44,7 +82,7 @@ export default function CasesGraph(props) {
     datasets: [
       {
         label: "130,000",
-        data: [180, 180],
+        data: [...data],
         backgroundColor: [...colors],
         borderWidth: 0,
         width: "10px",
@@ -67,9 +105,10 @@ export default function CasesGraph(props) {
               labels: {
                 boxWidth: 15,
                 font: { size: "16px", weight: 500 },
-                padding: 20,
+                padding: 25,
                 color: "#555",
                 textAlign: "center",
+                boxHeight: 15,
               },
             },
           },

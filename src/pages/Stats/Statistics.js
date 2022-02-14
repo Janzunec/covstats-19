@@ -7,7 +7,8 @@ export default function Statistcs() {
   const [countries, setCountries] = useState([]);
   const [countryData, setCountryData] = useState({});
   const [country, setCountry] = useState("WorldWide");
-  const [selectedDay, setSelectedDay] = useState("All Time");
+  const [isAllTime, setIsAllTime] = useState(true);
+
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/countries/");
     const data = await resp.json();
@@ -45,11 +46,8 @@ export default function Statistcs() {
   };
   //Driller fucntion
   const updateDays = (e) => {
-    if (e === "All Time") {
-      setSelectedDay("All Time");
-    } else {
-      setSelectedDay("Today");
-    }
+    console.log(e);
+    setIsAllTime(e);
   };
 
   return (
@@ -64,7 +62,7 @@ export default function Statistcs() {
       <div className="statistics-right">
         <StatisticsRight
           updateDays={updateDays}
-          selectedDay={selectedDay}
+          isAllTime={isAllTime}
           countriesArr={countries}
           selectedCountry={country}
           data={countryData}

@@ -4,21 +4,38 @@ import { FaSquare } from "react-icons/fa";
 import "./TotalCases.css";
 
 export default function TotalCases(props) {
-  let allCases;
-  let activeCases;
-  let recovered;
-  let deaths;
-  if (props.selectedDay === "All Time") {
-    allCases = props.data.cases;
-    activeCases = props.data.active;
-    recovered = props.data.recovered;
-    deaths = props.data.deaths;
-  } else {
-    allCases = props.data.todayCases;
+  // const [dayValue, setDayValue] = useState(props.isAllTime);
 
-    activeCases = props.data.active;
-    recovered = props.data.todayRecovered;
-    deaths = props.data.todayDeaths;
+  const data = {
+    cases: props.data.cases,
+    activeCases: props.data.active,
+    recovered: props.data.recovered,
+    deaths: props.data.deaths,
+  };
+
+  if (props.isAllTime) {
+    data.cases = props.data.cases;
+    data.activeCases = props.data.active;
+    data.recovered = props.data.recovered;
+    data.deaths = props.data.deaths;
+  }
+  if (!props.isAllTime) {
+    const allTodayCases =
+      props.data.todayCases +
+      props.data.todayRecovered +
+      props.data.todayDeaths;
+    data.cases = allTodayCases;
+    data.activeCases = props.data.todayCases;
+    data.recovered = props.data.todayRecovered;
+    data.deaths = props.data.todayDeaths;
+
+    if (allTodayCases === 0) {
+      const customError = "Data not availible";
+      data.cases = customError;
+      data.activeCases = customError;
+      data.recovered = customError;
+      data.deaths = customError;
+    }
   }
 
   const calculatePercentage = () => {
@@ -28,36 +45,49 @@ export default function TotalCases(props) {
       fatalPercentage: 0,
     };
 
-    percentage.activePercentage = Math.trunc((activeCases * 100) / allCases);
-    percentage.recoveredPercentage = Math.trunc((recovered * 100) / allCases);
-    percentage.fatalPercentage = Math.ceil((deaths * 100) / allCases);
+    percentage.activePercentage =
+      Math.trunc((data.activeCases * 100) / data.cases) + "%";
+    percentage.recoveredPercentage =
+      Math.trunc((data.recovered * 100) / data.cases) + "%";
+    percentage.fatalPercentage =
+      Math.ceil((data.deaths * 100) / data.cases) + "%";
 
     return percentage;
   };
 
   const graphPercentage = calculatePercentage();
 
+  const onDayChangeHandler = (newValue) => {
+    // setDayValue(newValue);
+    props.updateDays(newValue);
+  };
+
   return (
     <div className="total-cases">
       <div className="total-cases-heading">
-        <h3>Total Confirmed Cases</h3>
-        <DaysDropdown updateDays={props.updateDays} />
+        <h3>TOTAL CONFIRMED CASES</h3>
+        <DaysDropdown
+          isAllTime={props.isAllTime}
+          onDayChange={onDayChangeHandler}
+        />
       </div>
       <div className="cases-num">
-        {Intl.NumberFormat("en-UK").format(allCases)}
+        {typeof data.cases === "string"
+          ? data.cases
+          : Intl.NumberFormat("en-UK").format(data.cases)}
       </div>
       <div className="cases-bar">
         <div
-          className="recovered"
-          style={{ width: `${graphPercentage.recoveredPercentage}%` }}
+          className="recovered-bar"
+          style={{ width: graphPercentage.recoveredPercentage }}
         ></div>
         <div
-          className="active"
-          style={{ width: `${graphPercentage.activePercentage}%` }}
+          className="active-bar"
+          style={{ width: graphPercentage.activePercentage }}
         ></div>
         <div
-          className="fatal"
-          style={{ width: `${graphPercentage.fatalPercentage}%` }}
+          className="fatal-bar"
+          style={{ width: graphPercentage.fatalPercentage }}
         ></div>
       </div>
       <ul className="total-list">
@@ -68,7 +98,11 @@ export default function TotalCases(props) {
             </span>
             &nbsp; Recovered cases
           </div>
-          <div>{Intl.NumberFormat("en-UK").format(recovered)}</div>
+          <div>
+            {typeof data.cases === "string"
+              ? data.cases
+              : Intl.NumberFormat("en-UK").format(data.recovered)}
+          </div>
         </li>
         <li className="list-case">
           <div>
@@ -77,7 +111,11 @@ export default function TotalCases(props) {
             </span>
             &nbsp; Active cases
           </div>
-          <div>{Intl.NumberFormat("en-UK").format(activeCases)}</div>
+          <div>
+            {typeof data.cases === "string"
+              ? data.cases
+              : Intl.NumberFormat("en-UK").format(data.activeCases)}
+          </div>
         </li>
         <li className="list-case">
           <div>
@@ -86,7 +124,11 @@ export default function TotalCases(props) {
             </span>
             &nbsp; Fatal cases
           </div>
-          <div>{Intl.NumberFormat("en-UK").format(deaths)}</div>
+          <div>
+            {typeof data.cases === "string"
+              ? data.cases
+              : Intl.NumberFormat("en-UK").format(data.deaths)}
+          </div>
         </li>
       </ul>
     </div>

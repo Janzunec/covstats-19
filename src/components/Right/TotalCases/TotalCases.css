@@ -8,6 +8,7 @@
 .total-cases-heading h3 {
   font-size: 1.2rem;
   color: #888;
+  font-weight: 500;
 }
 
 .cases-num {
@@ -28,22 +29,23 @@
   padding-top: 15px;
 }
 
-.active,
-.recovered,
-.fatal {
+.active-bar,
+.recovered-bar,
+.fatal-bar {
   display: inline-block;
   height: 12px;
+  transition: 300ms ease-out;
 }
 
-.active {
+.active-bar {
   background-color: #cb2d6f;
 }
-.recovered {
+.recovered-bar {
   background-color: #14a098;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 }
-.fatal {
+.fatal-bar {
   background-color: #0f292f;
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;

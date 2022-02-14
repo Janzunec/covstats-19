@@ -12,7 +12,6 @@ import "./CountriesDropdown.css";
 
 export default function Dropdown(props) {
   const countryChangeHandler = (e, newValue) => {
-    console.log(newValue);
     props.onChangeCountry(newValue);
   };
 
