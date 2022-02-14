@@ -44,7 +44,7 @@ export default function CasesGraph(props) {
     datasets: [
       {
         label: "130,000",
-        data: [290, 80],
+        data: [180, 180],
         backgroundColor: [...colors],
         borderWidth: 0,
         width: "10px",

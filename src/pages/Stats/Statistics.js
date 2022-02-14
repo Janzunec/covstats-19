@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Dropdown from "../../components/Left/CountriesDropdown";
+import CountriesDropdown from "../../components/Left/CountriesDropdown";
 import StatisticsRight from "../../components/Right/StatisticsRight";
 import "./Statistics.css";
 
@@ -7,7 +7,7 @@ export default function Statistcs() {
   const [countries, setCountries] = useState([]);
   const [countryData, setCountryData] = useState({});
   const [country, setCountry] = useState("WorldWide");
-
+  const [selectedDay, setSelectedDay] = useState("All Time");
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/countries/");
     const data = await resp.json();
@@ -43,11 +43,19 @@ export default function Statistcs() {
     setCountryData(data);
     setCountry(selectedCountry);
   };
+  //Driller fucntion
+  const updateDays = (e) => {
+    if (e === "All Time") {
+      setSelectedDay("All Time");
+    } else {
+      setSelectedDay("Today");
+    }
+  };
 
   return (
     <div className="statistics">
       <div className="statistics-left">
-        <Dropdown
+        <CountriesDropdown
           countriesArr={countries}
           selectedCountry={country}
           onChangeCountry={countryChangeHandler}
@@ -55,6 +63,8 @@ export default function Statistcs() {
       </div>
       <div className="statistics-right">
         <StatisticsRight
+          updateDays={updateDays}
+          selectedDay={selectedDay}
           countriesArr={countries}
           selectedCountry={country}
           data={countryData}
