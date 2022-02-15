@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import CountriesDropdown from "../../components/Left/CountriesDropdown";
 import StatisticsRight from "../../components/Right/StatisticsRight";
+import Map from "../../components/Left/Map";
 import "./Statistics.css";
-
+import "leaflet/dist/leaflet.css";
 export default function Statistcs() {
   const [countries, setCountries] = useState([]);
   const [countryData, setCountryData] = useState({});
   const [country, setCountry] = useState("WorldWide");
   const [isAllTime, setIsAllTime] = useState(true);
+  const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({
+    lat: 34.80746,
+    lng: -40.4796,
+  });
+  const [mapZoom, setMapZoom] = useState(3);
 
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/countries/");
@@ -15,7 +22,15 @@ export default function Statistcs() {
     const countries = data.map((val) => {
       return val.country;
     });
-
+    const sortedData = [...data];
+    sortedData.sort((a, b) => {
+      if (a.cases > b.cases) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setTableData(sortedData);
     setCountries(countries);
   }, []);
 
@@ -58,6 +73,7 @@ export default function Statistcs() {
           selectedCountry={country}
           onChangeCountry={countryChangeHandler}
         />
+        <Map center={mapCenter} zoom={mapZoom}></Map>
       </div>
       <div className="statistics-right">
         <StatisticsRight
@@ -66,6 +82,7 @@ export default function Statistcs() {
           countriesArr={countries}
           selectedCountry={country}
           data={countryData}
+          tableData={tableData}
         />
       </div>
     </div>
