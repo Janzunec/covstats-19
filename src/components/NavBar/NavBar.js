@@ -11,7 +11,7 @@ export default function NavBar() {
       </div>
       <ul className="links-list">
         <li className="link">
-          <a href="https://github.com/Janzunec/covstats-19">
+          <a target="blank" href="https://github.com/Janzunec/covstats-19">
             <RiGithubLine />
           </a>
         </li>

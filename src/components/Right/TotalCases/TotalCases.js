@@ -80,15 +80,21 @@ export default function TotalCases(props) {
         <div
           className="recovered-bar"
           style={{ width: graphPercentage.recoveredPercentage }}
-        ></div>
+        >
+          {/* {graphPercentage.recoveredPercentage} */}
+        </div>
         <div
           className="active-bar"
           style={{ width: graphPercentage.activePercentage }}
-        ></div>
+        >
+          {/* {graphPercentage.activePercentage} */}
+        </div>
         <div
           className="fatal-bar"
           style={{ width: graphPercentage.fatalPercentage }}
-        ></div>
+        >
+          {/* {graphPercentage.fatalPercentage} */}
+        </div>
       </div>
       <ul className="total-list">
         <li className="list-case">
