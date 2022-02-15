@@ -8,6 +8,7 @@ export default function Statistcs() {
   const [countryData, setCountryData] = useState({});
   const [country, setCountry] = useState("WorldWide");
   const [isAllTime, setIsAllTime] = useState(true);
+  const [tableData, setTableData] = useState([]);
 
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/countries/");
@@ -15,7 +16,15 @@ export default function Statistcs() {
     const countries = data.map((val) => {
       return val.country;
     });
-
+    const sortedData = [...data];
+    sortedData.sort((a, b) => {
+      if (a.cases > b.cases) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setTableData(sortedData);
     setCountries(countries);
   }, []);
 
@@ -66,6 +75,7 @@ export default function Statistcs() {
           countriesArr={countries}
           selectedCountry={country}
           data={countryData}
+          tableData={tableData}
         />
       </div>
     </div>

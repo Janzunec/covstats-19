@@ -1,0 +1,25 @@
+.table {
+  margin: 20px;
+  height: 400px;
+  overflow: scroll;
+}
+.table::-webkit-scrollbar {
+  display: none;
+}
+.spaced {
+  display: flex;
+  justify-content: space-between;
+}
+h3 {
+  font-size: 1.2rem;
+  color: #888;
+  font-weight: 500;
+  margin: 0;
+  padding: 20px 0 15px 15px;
+}
+td {
+  padding: 5px;
+}
+.table tr:nth-of-type(odd) {
+  background-color: rgba(136, 136, 136, 0.212);
+}

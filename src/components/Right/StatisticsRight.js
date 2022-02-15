@@ -3,6 +3,7 @@ import TotalCases from "../../components/Right/TotalCases/TotalCases";
 import "./StatisticsRight.css";
 import ActiveCases from "./CasesGraphs/ActiveCases/ActiveCases";
 import ClosedCases from "./CasesGraphs/ClosedCases/ClosedCases";
+import CasesTable from "./CasesTable/CasesTable";
 
 export default function StatisticsRight(props) {
   return (
@@ -27,7 +28,9 @@ export default function StatisticsRight(props) {
           <ClosedCases data={props.data} isAllTime={props.isAllTime} />
         </div>
       </div>
-      <div className="statistics-right__table"></div>
+      <div className="statistics-right__table">
+        <CasesTable tableData={props.tableData}></CasesTable>
+      </div>
     </div>
   );
 }
