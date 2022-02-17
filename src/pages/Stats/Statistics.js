@@ -11,18 +11,21 @@ export default function Statistcs() {
   const [isAllTime, setIsAllTime] = useState(true);
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({
-    lat: 34.80746,
-    lng: -40.4796,
+    lat: 30.80746,
+    lng: 30.4796,
   });
-  const [mapZoom, setMapZoom] = useState(3);
+  const [mapZoom, setMapZoom] = useState(4);
 
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/countries/");
     const data = await resp.json();
+
     const countries = data.map((val) => {
       return val.country;
     });
+
     const sortedData = [...data];
+
     sortedData.sort((a, b) => {
       if (a.cases > b.cases) {
         return -1;
@@ -30,6 +33,7 @@ export default function Statistcs() {
         return 1;
       }
     });
+
     setTableData(sortedData);
     setCountries(countries);
   }, []);
@@ -37,6 +41,7 @@ export default function Statistcs() {
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/all");
     const data = await resp.json();
+
     setCountryData(data);
   }, []);
 
@@ -44,6 +49,7 @@ export default function Statistcs() {
   const countryChangeHandler = async (parsedCountry) => {
     let resp, data;
     let selectedCountry;
+
     if (parsedCountry === null || parsedCountry === "WorldWide") {
       resp = await fetch(`https://disease.sh/v3/covid-19/all`);
       selectedCountry = "WorldWide";
@@ -61,7 +67,6 @@ export default function Statistcs() {
   };
   //Driller fucntion
   const updateDays = (e) => {
-    console.log(e);
     setIsAllTime(e);
   };
 
@@ -73,7 +78,12 @@ export default function Statistcs() {
           selectedCountry={country}
           onChangeCountry={countryChangeHandler}
         />
-        <Map center={mapCenter} zoom={mapZoom}></Map>
+        <Map
+          center={mapCenter}
+          zoom={mapZoom}
+          countryData={countryData}
+          country={country}
+        ></Map>
       </div>
       <div className="statistics-right">
         <StatisticsRight
