@@ -43,6 +43,8 @@ export default function TotalCases(props) {
       activePercentage: 0,
       recoveredPercentage: 0,
       fatalPercentage: 0,
+      activeRadiusRight: 0,
+      activeRadiusLeft: 0,
     };
 
     percentage.activePercentage =
@@ -51,6 +53,12 @@ export default function TotalCases(props) {
       Math.trunc((data.recovered * 100) / data.cases) + "%";
     percentage.fatalPercentage =
       Math.ceil((data.deaths * 100) / data.cases) + "%";
+
+    if (percentage.fatalPercentage === "0%")
+      percentage.activeRadiusRight = "20px";
+
+    if (percentage.recoveredPercentage === "0%")
+      percentage.activeRadiusLeft = "20px";
 
     return percentage;
   };
@@ -85,7 +93,13 @@ export default function TotalCases(props) {
         </div>
         <div
           className="active-bar"
-          style={{ width: graphPercentage.activePercentage }}
+          style={{
+            width: graphPercentage.activePercentage,
+            borderTopRightRadius: graphPercentage.activeRadiusRight,
+            borderBottomRightRadius: graphPercentage.activeRadiusRight,
+            borderTopLeftRadius: graphPercentage.activeRadiusLeft,
+            borderBottomLeftRadius: graphPercentage.activeRadiusLeft,
+          }}
         >
           {/* {graphPercentage.activePercentage} */}
         </div>

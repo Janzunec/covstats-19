@@ -1,40 +1,26 @@
+import "leaflet/dist/leaflet.css";
 import React, { useEffect, useState } from "react";
 import CountriesDropdown from "../../components/Left/CountriesDropdown";
+import Map from "../../components/Left/Map/Map";
 import StatisticsRight from "../../components/Right/StatisticsRight";
-import Map from "../../components/Left/Map";
 import "./Statistics.css";
-import "leaflet/dist/leaflet.css";
 export default function Statistcs() {
   const [countries, setCountries] = useState([]);
   const [countryData, setCountryData] = useState({});
   const [country, setCountry] = useState("WorldWide");
   const [isAllTime, setIsAllTime] = useState(true);
   const [tableData, setTableData] = useState([]);
-  const [mapCenter, setMapCenter] = useState({
-    lat: 30.80746,
-    lng: 30.4796,
-  });
-  const [mapZoom, setMapZoom] = useState(4);
 
   useEffect(async () => {
     const resp = await fetch("https://disease.sh/v3/covid-19/countries/");
     const data = await resp.json();
 
+    setTableData(data);
+
     const countries = data.map((val) => {
       return val.country;
     });
 
-    const sortedData = [...data];
-
-    sortedData.sort((a, b) => {
-      if (a.cases > b.cases) {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
-
-    setTableData(sortedData);
     setCountries(countries);
   }, []);
 
@@ -78,12 +64,7 @@ export default function Statistcs() {
           selectedCountry={country}
           onChangeCountry={countryChangeHandler}
         />
-        <Map
-          center={mapCenter}
-          zoom={mapZoom}
-          countryData={countryData}
-          country={country}
-        ></Map>
+        <Map countryData={countryData} country={country}></Map>
       </div>
       <div className="statistics-right">
         <StatisticsRight

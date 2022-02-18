@@ -1,19 +1,80 @@
 .table {
   margin: 20px;
   height: 400px;
-  overflow: scroll;
+  color: #555;
 }
 
 .table::-webkit-scrollbar {
   display: none;
 }
 
-.row {
+.table-data {
+  height: 380px;
+  margin-bottom: 20px;
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row,
+.table-headers {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2rem;
-  padding: 10px;
-  border: 2px solid #ddd;
+  font-size: 1.1rem;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.header {
+  background-color: #eceff1;
+}
+
+.heading-country {
+  cursor: pointer;
+}
+
+.heading-country:hover {
+  background-color: #ddd;
+}
+
+.row:nth-child(1) {
+  margin-top: 10px;
+}
+
+.header,
+.attribute {
+  width: 20%;
+  height: 60px;
+  text-align: center;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.header:nth-child(1),
+.attribute:nth-child(1) {
+  text-align: left;
+  padding-left: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.header:last-child,
+.attribute:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.header:nth-child(n + 2),
+.attribute:nth-child(n + 2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h3 {

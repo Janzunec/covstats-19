@@ -1,7 +1,7 @@
 .active-graph,
 .closed-graph {
   width: 100%;
-  height: 45vh;
+  height: 38vh;
   display: flex;
   flex-direction: column;
 }

@@ -26,14 +26,14 @@ export default function Dropdown(props) {
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "#eceff1",
-        borderRadius: 30,
+        border: "#eceff1",
+        borderRadius: 15,
       },
       "&:hover fieldset": {
-        borderColor: "#eceff1",
+        border: "2px solid #ccc",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#eceff1",
+        border: "3px inset #ccc",
       },
     },
   });
@@ -47,18 +47,17 @@ export default function Dropdown(props) {
         sx={{
           width: "100%",
           backgroundColor: "#eceff1",
-          borderRadius: "30px",
+          borderRadius: "15px",
         }}
         onChange={countryChangeHandler}
         renderInput={(params) => {
-          // return <TextField {...params} label="🌍 Search location" fullWidth />;
           return (
             <CssTextField
               {...params}
               label="&nbsp;🌍 Search location"
               id="custom-css-input"
               style={{
-                borderRadius: "30px",
+                borderRadius: "15px",
               }}
             />
           );
