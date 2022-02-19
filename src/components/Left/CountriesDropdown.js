@@ -1,13 +1,5 @@
+import { Autocomplete, styled, TextField } from "@mui/material";
 import React, { useState } from "react";
-import {
-  FormControl,
-  MenuItem,
-  Select,
-  Autocomplete,
-  TextField,
-  styled,
-} from "@mui/material";
-import { IoLocationOutline } from "react-icons/io";
 import "./CountriesDropdown.css";
 
 export default function Dropdown(props) {

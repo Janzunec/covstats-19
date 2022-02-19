@@ -1,18 +1,10 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  useMap,
-  useMapEvent,
-} from "react-leaflet";
 import Leaflet from "leaflet";
-import "./Map.css";
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
-import { Container } from "@mui/material";
-import { popupContent, popupCases } from "./popupStyles";
+import React, { useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import "./Map.css";
+import { popupCases, popupContent } from "./popupStyles";
 
 export default function Map({ countryData, country, sortedMapData }) {
   const [center, setCenter] = useState({

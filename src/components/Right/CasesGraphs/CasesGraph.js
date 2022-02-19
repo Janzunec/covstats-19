@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import "./CasesGraph.css";
-import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  DoughnutController,
-  LinearScale,
   Decimation,
+  DoughnutController,
   Filler,
   Legend,
+  LinearScale,
+  registerables,
+  SubTitle,
   Title,
   Tooltip,
-  SubTitle,
-  registerables,
 } from "chart.js";
+import React from "react";
+import { Doughnut } from "react-chartjs-2";
+import "./CasesGraph.css";
 
 export default function CasesGraph(props) {
   ChartJS.register(

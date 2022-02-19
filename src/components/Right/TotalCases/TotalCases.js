@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import DaysDropdown from "../DaysDropdown/DaysDropdown";
+import React from "react";
 import { FaSquare } from "react-icons/fa";
+import DaysDropdown from "../DaysDropdown/DaysDropdown";
 import "./TotalCases.css";
 
 export default function TotalCases(props) {
