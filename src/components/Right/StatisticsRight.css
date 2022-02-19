@@ -59,3 +59,13 @@
   height: 38vh;
   width: 50%;
 }
+
+@media screen and (max-width: 1150px) {
+  .right {
+    height: auto;
+    overflow: unset;
+  }
+  .title {
+    padding: 0;
+  }
+}

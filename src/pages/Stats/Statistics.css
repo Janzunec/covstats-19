@@ -21,3 +21,19 @@
   width: 60%;
   height: 100vh;
 }
+
+@media screen and (max-width: 1150px) {
+  .statistics {
+    flex-direction: column;
+  }
+  .statistics-left {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border-bottom: 2px solid #ddd;
+  }
+  .statistics-right {
+    width: 100%;
+    height: auto;
+  }
+}

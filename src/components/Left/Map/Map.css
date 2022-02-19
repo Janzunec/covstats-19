@@ -1,5 +1,5 @@
 .map {
-  height: 840px;
+  height: 86vh;
   background-color: transparent;
   padding: 0;
 
@@ -15,4 +15,12 @@
 
 .map a {
   font-size: 10px;
+}
+
+@media screen and (max-width: 1150px) {
+  .map {
+    height: 25vh;
+    width: 90%;
+    margin: 20px auto;
+  }
 }

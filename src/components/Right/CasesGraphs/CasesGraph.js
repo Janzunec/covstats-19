@@ -88,6 +88,7 @@ export default function CasesGraph(props) {
         width: "10px",
       },
     ],
+    AnimationTimeline: "300ms",
   };
 
   return (
@@ -98,7 +99,6 @@ export default function CasesGraph(props) {
           cutout: "80%",
           maintainAspectRatio: false,
           responsive: true,
-          animations: true,
           plugins: {
             legend: {
               position: "bottom",

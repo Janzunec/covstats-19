@@ -3,46 +3,22 @@ import { BiSortAlt2 } from "react-icons/bi";
 import "./CasesTable.css";
 
 export default function CasesTable(props) {
-  const [sortedData, setSortedData] = useState([...props.tableData]);
-  const [sortType, setSortType] = useState(null);
-
-  if (sortType === null) {
-    setSortedData(
-      sortedData.sort((a, b) => {
-        if (a.cases > b.cases) return -1;
-        return 1;
-      })
-    );
-    setSortType("asc");
-  }
+  const sortedData = props.tableData;
+  const [sortType, setSortType] = useState("asc");
 
   const sortDataHandler = (e) => {
-    // let sortDataType;
-    // switch (e.target.children) {
-    //   case "Country":
-    //     break;
-
-    //   default:
-    //     break;
-    // }
-    // console.log(e);
-
     if (sortType === "asc") {
-      setSortedData(
-        sortedData.sort((a, b) => {
-          if (a.cases < b.cases) return -1;
-          return 1;
-        })
-      );
+      sortedData.sort((a, b) => {
+        if (a.cases < b.cases) return -1;
+        return 1;
+      });
       setSortType("desc");
       return;
     }
-    setSortedData(
-      sortedData.sort((a, b) => {
-        if (a.cases > b.cases) return -1;
-        return 1;
-      })
-    );
+    sortedData.sort((a, b) => {
+      if (a.cases > b.cases) return -1;
+      return 1;
+    });
     setSortType("asc");
   };
 
@@ -53,7 +29,13 @@ export default function CasesTable(props) {
         <div className="table-headers" key={0}>
           <div className="header heading-country" onClick={sortDataHandler}>
             Country
-            <BiSortAlt2 style={{ fontSize: "22px", marginLeft: "40%" }} />
+            <BiSortAlt2
+              style={{
+                fontSize: "1.5rem",
+                marginLeft: "auto",
+                marginRight: "10px",
+              }}
+            />
           </div>
           <div className="header">Total Cases</div>
           <div className="header">New cases</div>
@@ -61,7 +43,7 @@ export default function CasesTable(props) {
           <div className="header">New Deaths</div>
         </div>
         <div className="table-data">
-          {sortedData.map((val, i) => {
+          {sortedData.map((val) => {
             return (
               <div
                 className="row"
@@ -71,7 +53,7 @@ export default function CasesTable(props) {
                     : val.countryInfo._id
                 }
               >
-                <div className="row-country attribute">{(i, val.country)}</div>
+                <div className="row-country attribute">{val.country}</div>
                 <div className="row-cases__total attribute">{val.cases}</div>
                 <div className="row-cases__new attribute">{val.todayCases}</div>
                 <div className="row-deaths__total attribute">{val.deaths}</div>

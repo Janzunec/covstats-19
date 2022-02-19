@@ -42,3 +42,9 @@ a {
 a:hover {
   color: #cb2d6f;
 }
+
+@media screen and (max-width: 1150px) {
+  .navigation {
+    display: none;
+  }
+}

@@ -14,16 +14,25 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { Container } from "@mui/material";
 import { popupContent, popupCases } from "./popupStyles";
 
-export default function Map({ countryData, country }) {
+export default function Map({ countryData, country, sortedMapData }) {
   const [center, setCenter] = useState({
     lat: 30.80746,
     lng: 0.4796,
   });
-  const [zoom, setZoom] = useState(3);
   const [currCountry, setCurrCountry] = useState("WorldWide");
   const [position, setPosition] = useState([50, 0]);
   const [mapCenter, setMapCenter] = useState(center);
   const [countryIsSelected, setCountryIsSelected] = useState(false);
+
+  const zoom = {
+    maxZoom: 10,
+    minZoom: 3,
+    currZoom: 3,
+  };
+
+  const topCasesCountries = [...sortedMapData];
+
+  topCasesCountries.splice(10);
 
   let defaultIcon = Leaflet.icon({
     iconUrl: icon,
@@ -32,23 +41,20 @@ export default function Map({ countryData, country }) {
     iconAnchor: [17, 46],
   });
 
-  // function DisplayPosition({ map }) {
-  //   const onClick = useCallback(() => {
-  //     map.setView(center, zoom);
-  //   }, [map]);
-
-  //   return <></>;
-  // }
-
   const [map, setMap] = useState(null);
 
   const displayMap = (
-    <MapContainer center={mapCenter} zoom={zoom} whenCreated={setMap}>
+    <MapContainer
+      center={mapCenter}
+      zoom={zoom.currZoom}
+      minZoom={zoom.minZoom}
+      maxZoom={zoom.maxZoom}
+      whenCreated={setMap}
+    >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-
       {countryIsSelected && (
         <Marker position={position}>
           <Popup>
@@ -61,27 +67,48 @@ export default function Map({ countryData, country }) {
           </Popup>
         </Marker>
       )}
+      {!countryIsSelected && (
+        <>
+          {topCasesCountries.map((val) => (
+            <Marker
+              position={[val.countryInfo.lat, val.countryInfo.long]}
+              key={val.countryInfo._id}
+            >
+              <Popup>
+                <div style={popupContent}>
+                  <div>{val.country}:</div>
+                  <div style={popupCases}>
+                    {Intl.NumberFormat("en-UK").format(val.cases)}
+                  </div>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+        </>
+      )}
     </MapContainer>
   );
 
   if (countryData.country !== undefined && country !== currCountry) {
     const latLng = [countryData.countryInfo.lat, countryData.countryInfo.long];
-    setZoom(5);
     setCurrCountry(countryData.country);
     setPosition(latLng);
     setMapCenter(latLng);
     setCountryIsSelected(true);
-    map.setView(latLng, zoom, {
+
+    zoom.currZoom = 5;
+
+    map.setView(latLng, zoom.currZoom, {
       Animation: true,
       AnimationTimeline: 500,
     });
   }
   if (country === "WorldWide" && country !== currCountry) {
-    setZoom(2);
     setCurrCountry(country);
     setPosition(center);
     setMapCenter(center);
-    setCountryIsSelected(true);
+    setCountryIsSelected(false);
+    zoom.currZoom = 3;
   }
 
   Leaflet.Popup.prototype.options.offset = [-1, -39];
