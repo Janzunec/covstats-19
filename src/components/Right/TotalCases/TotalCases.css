@@ -1,3 +1,7 @@
+.total-cases {
+  border-top: 2px solid #ddd;
+}
+
 .total-cases-heading {
   width: 95%;
   display: flex;
@@ -8,11 +12,11 @@
 }
 
 .total-cases-heading h3 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #888;
   font-weight: 500;
   padding: 0;
-  margin: 5px;
+  margin: 5px 0;
 }
 
 .cases-num {
@@ -98,5 +102,14 @@
 @media screen and (max-width: 1150px) {
   .total-cases-heading {
     padding: 0;
+  }
+  .cases-bar {
+    width: 92%;
+  }
+  .total-cases-heading {
+    width: 92%;
+  }
+  .cases-num {
+    width: 92%;
   }
 }
