@@ -3,7 +3,7 @@ import { BiSortAlt2 } from "react-icons/bi";
 import "./CasesTable.css";
 
 export default function CasesTable(props) {
-  const [sortedData, setSortedData] = useState(props.tableData);
+  const [sortedData, setSortedData] = useState([...props.tableData]);
   const [sortType, setSortType] = useState(null);
 
   if (sortType === null) {
@@ -73,16 +73,10 @@ export default function CasesTable(props) {
               >
                 <div className="row-country attribute">{(i, val.country)}</div>
                 <div className="row-cases__total attribute">{val.cases}</div>
-                <div className="row-cases__new attribute">
-                  {val.todayCases === null
-                    ? "Data Not Availible"
-                    : val.todayCases}
-                </div>
+                <div className="row-cases__new attribute">{val.todayCases}</div>
                 <div className="row-deaths__total attribute">{val.deaths}</div>
                 <div className="row-deaths__new attribute">
-                  {val.todayDeaths === null
-                    ? "Data Not Availible"
-                    : val.todayDeaths}
+                  {val.todayDeaths}
                 </div>
               </div>
             );
