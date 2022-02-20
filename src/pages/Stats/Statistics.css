@@ -25,6 +25,7 @@
 @media screen and (max-width: 1150px) {
   .statistics {
     flex-direction: column;
+    border-radius: 0;
   }
   .statistics-left {
     width: 100%;

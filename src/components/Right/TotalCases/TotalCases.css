@@ -29,7 +29,7 @@
 }
 
 .cases-bar {
-  width: 97%;
+  width: 96%;
   height: 10px;
   border-radius: 20px;
   margin: 0;
@@ -66,7 +66,7 @@
 }
 
 .total-list {
-  width: 90%;
+  width: 95%;
   height: auto;
   list-style: none;
   margin: 0 auto;
@@ -111,5 +111,15 @@
   }
   .cases-num {
     width: 92%;
+  }
+  .cases-bar {
+    width: 95%;
+  }
+  .total-list {
+    width: 90%;
+    height: auto;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
   }
 }

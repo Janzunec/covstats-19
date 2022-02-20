@@ -8,8 +8,8 @@ import { popupCases, popupContent } from "./popupStyles";
 
 export default function Map({ countryData, country, sortedMapData }) {
   const [center, setCenter] = useState({
-    lat: 30.80746,
-    lng: 0.4796,
+    lat: 50.80746,
+    lng: 10.4796,
   });
   const [currCountry, setCurrCountry] = useState("WorldWide");
   const [position, setPosition] = useState([50, 0]);

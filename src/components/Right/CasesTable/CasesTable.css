@@ -83,3 +83,25 @@ h3 {
   margin: 0;
   padding: 20px 0 15px 15px;
 }
+
+@media screen and (max-width: 1150px) {
+  .header:nth-child(2n + 3),
+  .attribute:nth-child(2n + 3) {
+    display: none;
+  }
+
+  .header,
+  .attribute {
+    width: 33%;
+  }
+
+  .table {
+    margin: 10px auto;
+    padding: 0 10px;
+    height: 350px;
+    overflow-y: hidden;
+  }
+  .table-data {
+    height: 280px;
+  }
+}
