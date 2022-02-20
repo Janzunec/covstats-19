@@ -1,7 +1,8 @@
 .table {
-  margin: 10px 20px 60px 20px;
+  margin: 15px auto;
   height: 400px;
   color: #555;
+  width: 95%;
 }
 
 .table::-webkit-scrollbar {
@@ -26,6 +27,7 @@
   padding: 0;
   border: 1px solid #ddd;
   border-radius: 10px;
+  margin: 0;
 }
 
 .header {

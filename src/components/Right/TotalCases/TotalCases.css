@@ -1,5 +1,8 @@
 .total-cases {
   border-top: 2px solid #ddd;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 .total-cases-heading {
@@ -8,7 +11,6 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 15px auto;
-  padding: 0 2px;
 }
 
 .total-cases-heading h3 {
@@ -32,9 +34,6 @@
   width: 96%;
   height: 10px;
   border-radius: 20px;
-  margin: 0;
-  /* padding-left: 15px;
-  padding-top: 15px; */
   margin: 10px auto;
 }
 
