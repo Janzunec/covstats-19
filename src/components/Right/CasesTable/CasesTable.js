@@ -43,7 +43,35 @@ export default function CasesTable(props) {
           <div className="header">New Deaths</div>
         </div>
         <div className="table-data">
-          {sortedData.map((val) => {
+          {sortedData.map((val, index) => {
+            if (val.country == props.selectedCountry) {
+              return (
+                <div
+                  className="row selected"
+                  key={
+                    val.countryInfo._id === null
+                      ? Math.random()
+                      : val.countryInfo._id
+                  }
+                >
+                  <div className="row-country attribute">
+                    {val.country} ( Rank : {index + 1} )
+                  </div>
+                  <div className="row-cases__total attribute">{val.cases}</div>
+                  <div className="row-cases__new attribute">
+                    {val.todayCases}
+                  </div>
+                  <div className="row-deaths__total attribute">
+                    {val.deaths}
+                  </div>
+                  <div className="row-deaths__new attribute">
+                    {val.todayDeaths}
+                  </div>
+                </div>
+              );
+            }
+          })}
+          {sortedData.map((val, index) => {
             return (
               <div
                 className="row"

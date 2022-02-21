@@ -85,6 +85,9 @@ h3 {
   margin: 0;
   padding: 20px 0 15px 15px;
 }
+.selected {
+  background-color: #eceff1;
+}
 
 @media screen and (max-width: 1150px) {
   .header:nth-child(2n + 3),

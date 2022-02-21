@@ -29,7 +29,10 @@ export default function StatisticsRight(props) {
         </div>
       </div>
       <div className="statistics-right__table">
-        <CasesTable tableData={props.tableData}></CasesTable>
+        <CasesTable
+          tableData={props.tableData}
+          selectedCountry={props.selectedCountry}
+        ></CasesTable>
       </div>
     </div>
   );
