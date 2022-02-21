@@ -106,4 +106,7 @@ h3 {
   .table-data {
     height: 280px;
   }
+  .row {
+    font-size: 1rem;
+  }
 }

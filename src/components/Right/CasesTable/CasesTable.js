@@ -43,7 +43,7 @@ export default function CasesTable(props) {
           <div className="header">New Deaths</div>
         </div>
         <div className="table-data">
-          {sortedData.map((val) => {
+          {sortedData.map((val, index) => {
             return (
               <div
                 className="row"
@@ -53,7 +53,10 @@ export default function CasesTable(props) {
                     : val.countryInfo._id
                 }
               >
-                <div className="row-country attribute">{val.country}</div>
+                <div className="row-country attribute">
+                  {`#${index + 1} `}
+                  {val.country}
+                </div>
                 <div className="row-cases__total attribute">{val.cases}</div>
                 <div className="row-cases__new attribute">{val.todayCases}</div>
                 <div className="row-deaths__total attribute">{val.deaths}</div>

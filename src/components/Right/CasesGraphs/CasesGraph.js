@@ -81,7 +81,7 @@ export default function CasesGraph(props) {
     labels: [...labels],
     datasets: [
       {
-        label: "130,000",
+        label: `${data[0] + data[1]}`,
         data: [...data],
         backgroundColor: [...colors],
         borderWidth: 0,

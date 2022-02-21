@@ -23,6 +23,10 @@
   /* padding: 20px 0 15px 15px; */
 }
 
+.graph__info-num {
+  position: absolute;
+}
+
 @media screen and (max-width: 1150px) {
   .active-graph h3,
   .closed-graph h3 {
