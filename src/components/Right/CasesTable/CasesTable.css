@@ -10,8 +10,7 @@
 }
 
 .table-data {
-  height: 380px;
-  margin-bottom: 20px;
+  height: 330px;
   overflow: scroll;
   overflow-x: hidden;
   display: flex;
