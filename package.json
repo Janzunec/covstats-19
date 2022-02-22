@@ -23,7 +23,7 @@
     "source-map-url": "^0.4.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://Janzunec.github.io/covstats-19",
+  "homepage": "https://janzunec.github.io/covstats-19",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
