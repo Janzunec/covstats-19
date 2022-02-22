@@ -10,6 +10,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^3.7.1",
+    "gh-pages": "^3.2.3",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.0.1",
@@ -22,11 +23,13 @@
     "source-map-url": "^0.4.1",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://Janzunec.github.io/covstats-19",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
