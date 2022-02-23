@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import React, { useEffect, useState } from "react";
-import CountriesDropdown from "../../components/Left/CountriesDropdown";
+import CountriesDropdown from "../../components/Left/CountriesDropdown/CountriesDropdown";
 import Map from "../../components/Left/Map/Map";
 import StatisticsRight from "../../components/Right/StatisticsRight";
 import "./Statistics.css";
@@ -75,16 +75,16 @@ export default function Statistcs() {
           sortedMapData={sortedData}
         ></Map>
       </div>
-      <div className="statistics-right">
-        <StatisticsRight
-          updateDays={updateDays}
-          isAllTime={isAllTime}
-          countriesArr={countries}
-          selectedCountry={country}
-          data={countryData}
-          tableData={sortedData}
-        />
-      </div>
+      {/* <div className="statistics-right"> */}
+      <StatisticsRight
+        updateDays={updateDays}
+        isAllTime={isAllTime}
+        countriesArr={countries}
+        selectedCountry={country}
+        data={countryData}
+        tableData={sortedData}
+      />
+      {/* </div> */}
     </div>
   );
 }

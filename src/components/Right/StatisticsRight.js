@@ -7,26 +7,26 @@ import "./StatisticsRight.css";
 
 export default function StatisticsRight(props) {
   return (
-    <div className="right">
+    <div className="statistics-right">
       <h1 className="title">
         <b>COVID 19</b>&nbsp;<span>({props.selectedCountry})</span>
       </h1>
-      <div className="right-total">
-        <TotalCases
-          isAllTime={props.isAllTime}
-          updateDays={props.updateDays}
-          countriesArr={props.countriesArr}
-          selectedCountry={props.selectedCountry}
-          data={props.data}
-        />
-      </div>
+      {/* <div className="statistics-right__total"> */}
+      <TotalCases
+        isAllTime={props.isAllTime}
+        updateDays={props.updateDays}
+        countriesArr={props.countriesArr}
+        selectedCountry={props.selectedCountry}
+        data={props.data}
+      />
+      {/* </div> */}
       <div className="statistics-right__graphs">
-        <div className="graph-active">
-          <ActiveCases data={props.data} isAllTime={props.isAllTime} />
-        </div>
-        <div className="graph-closed">
-          <ClosedCases data={props.data} isAllTime={props.isAllTime} />
-        </div>
+        {/* <div className="graph-active"> */}
+        <ActiveCases data={props.data} isAllTime={props.isAllTime} />
+        {/* </div> */}
+        {/* <div className="graph-closed"> */}
+        <ClosedCases data={props.data} isAllTime={props.isAllTime} />
+        {/* </div> */}
       </div>
       <div className="statistics-right__table">
         <CasesTable tableData={props.tableData}></CasesTable>

@@ -88,9 +88,7 @@ export default function TotalCases(props) {
         <div
           className="recovered-bar"
           style={{ width: graphPercentage.recoveredPercentage }}
-        >
-          {/* {graphPercentage.recoveredPercentage} */}
-        </div>
+        ></div>
         <div
           className="active-bar"
           style={{
@@ -100,15 +98,11 @@ export default function TotalCases(props) {
             borderTopLeftRadius: graphPercentage.activeRadiusLeft,
             borderBottomLeftRadius: graphPercentage.activeRadiusLeft,
           }}
-        >
-          {/* {graphPercentage.activePercentage} */}
-        </div>
+        ></div>
         <div
           className="fatal-bar"
           style={{ width: graphPercentage.fatalPercentage }}
-        >
-          {/* {graphPercentage.fatalPercentage} */}
-        </div>
+        ></div>
       </div>
       <ul className="total-list">
         <li className="list-case">

@@ -1,6 +1,6 @@
 .active-graph,
 .closed-graph {
-  width: 100%;
+  width: 50%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
   }
   .active-graph,
   .closed-graph {
-    width: 99.5%;
+    width: 49.5%;
   }
   .active-graph {
     border-right: 1px solid #ddd;
