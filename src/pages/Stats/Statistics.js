@@ -1,9 +1,15 @@
 import "leaflet/dist/leaflet.css";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import CountriesDropdown from "../../components/Left/CountriesDropdown/CountriesDropdown";
-import Map from "../../components/Left/Map/Map";
-import StatisticsRight from "../../components/Right/StatisticsRight";
 import "./Statistics.css";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+
+const Map = React.lazy(() => import("../../components/Left/Map/Map"));
+
+const StatisticsRight = React.lazy(() =>
+  import("../../components/Right/StatisticsRight")
+);
+
 export default function Statistcs() {
   const [countries, setCountries] = useState([]);
   const [countryData, setCountryData] = useState({});
@@ -69,21 +75,25 @@ export default function Statistcs() {
           selectedCountry={country}
           onChangeCountry={countryChangeHandler}
         />
-        <Map
-          countryData={countryData}
-          country={country}
-          sortedMapData={sortedData}
-        ></Map>
+        <Suspense fallback={<LoadingSpinner color={"#CB2D6F"} />}>
+          <Map
+            countryData={countryData}
+            country={country}
+            sortedMapData={sortedData}
+          ></Map>
+        </Suspense>
       </div>
       {/* <div className="statistics-right"> */}
-      <StatisticsRight
-        updateDays={updateDays}
-        isAllTime={isAllTime}
-        countriesArr={countries}
-        selectedCountry={country}
-        data={countryData}
-        tableData={sortedData}
-      />
+      <Suspense fallback={<LoadingSpinner color={"#14A098"} />}>
+        <StatisticsRight
+          updateDays={updateDays}
+          isAllTime={isAllTime}
+          countriesArr={countries}
+          selectedCountry={country}
+          data={countryData}
+          tableData={sortedData}
+        />
+      </Suspense>
       {/* </div> */}
     </div>
   );
